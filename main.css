@@ -86,12 +86,13 @@ input {
 }
 
 .btn {
+  display: inline-block;
   position: relative;
   color: var(--primary-color);
-  padding: 0.3rem 1rem;
+  padding: 0.5rem 0.6rem;
   font-size: 1.3rem;
   font-weight: 500;
-  border: 1.4px solid var(--primary-color);
+  border: 0.2rem solid var(--primary-color);
   border-radius: 0.2rem;
   overflow: hidden;
   z-index: 10;
@@ -100,11 +101,11 @@ input {
 .btn::before {
   content: "";
   position: absolute;
-  background-color: var(--primary-color);
   top: 0;
   right: 0;
-  width: 0;
+  width: 0%;
   height: 100%;
+  background: var(--primary-color);
   z-index: -1;
   transition: 0.3s linear;
 }
@@ -132,10 +133,20 @@ input {
 .heading span {
   color: var(--primary-color);
 }
+.home {
+  /* position: absolute; */
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: -10;
+  position: relative;
+}
 
 .home .container {
-  padding: 5rem 0;
   display: flex;
+  height: 100%;
   flex-wrap: nowrap;
   justify-content: space-between;
   gap: 1.5rem;
@@ -189,10 +200,14 @@ input {
   flex: 1 1 20%;
   background-color: var(--white-color);
   padding: 2rem;
+  height: 30vh;
   border-radius: 3px;
   box-shadow: var(--box-shadow);
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .speciality .specials-wrapper .special-item > img {
   position: absolute;
@@ -200,15 +215,18 @@ input {
   left: 0;
   right: 0;
   width: 100%;
-  height: 0%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(-110%);
   transition: 0.3s linear;
 }
+
 .speciality .specials-wrapper .special-item:hover > img {
-  height: 100%;
+  transform: translateY(0%);
 }
 
 .speciality .specials-wrapper .special-item:hover .content {
-  transform: translateY(130%);
+  transform: translateY(200%);
   transition: 0.3s linear;
 }
 .speciality .specials-wrapper .special-item .content img {
@@ -221,6 +239,7 @@ input {
 }
 
 .speciality .specials-wrapper .special-item .content p {
+  color: var(--text-color);
   font-size: 1.1rem;
   font-weight: 500;
   line-height: 1.5rem;
@@ -290,7 +309,7 @@ input {
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: space-around;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .works .works-list .work-item img {
@@ -424,22 +443,40 @@ input {
   border: 1.3rem solid var(--white-color);
   background-color: var(--white-color);
 }
-.order .container .order-wrapper .form form .input {
+.order .container .order-wrapper .form form .group {
   flex: 1 0 40%;
+}
+.order .container .order-wrapper .form form .group2 .message,
+.order .container .order-wrapper .form form .group .message {
+  text-align: start;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.order .container .order-wrapper .form form .group2 .message.active,
+.order .container .order-wrapper .form form .group .message.active {
+  color: var(--primary-color);
+}
+.order .container .order-wrapper .form form .input {
   width: 100%;
   border-radius: 3px;
   height: 3rem;
   border: 1px solid #999;
   padding: 0.1rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }
+
 .order .container .order-wrapper .form form .input input {
+  background-color: var(--white-color);
   width: 100%;
   height: 100%;
   margin-left: 1rem;
 }
+
+.order .container .order-wrapper .form form .group2 {
+  flex: 1 1 100%;
+}
 .order .container .order-wrapper .form form .textarea {
-  flex: 1 0 100%;
+  /* flex: 1 0 100%; */
   height: 9rem;
   border: 1px solid #999;
   overflow: hidden;
@@ -453,8 +490,22 @@ input {
   border: none;
   margin: 0.5rem 0 0 0.5rem;
 }
-.order .container .order-wrapper .form form .btn {
-  max-height: 24px;
+.order .container .order-wrapper .form form .btn-sub {
+  flex: 0 0 20%;
+  color: var(--primary-color);
+  border: 0.2rem solid var(--primary-color);
+  padding: 0.4rem 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: 0.3s linear;
+  height: 3rem;
+  line-height: 100%;
+  cursor: pointer;
+}
+
+.order .container .order-wrapper .form form .btn-sub:hover {
+  color: var(--white-color);
+  background-color: var(--primary-color);
 }
 .footer {
   background-color: #000;
@@ -485,32 +536,64 @@ input {
   background-color: var(--primary-color);
   color: var(--white-color);
   cursor: pointer;
-  transition: .3s linear;
+  transition: 0.3s linear;
 }
 .btn-exit.active {
   top: calc(100% - 10%);
 }
 .loader {
-    position: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
-    top: 0;
-    bottom: 0;
+  position: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background-color: #fff;
+  transition: 0.3s linear;
+}
+.loader.active {
+  top: -130%;
+}
+@media (max-width: 1025px) {
+  .home {
+    height: 50vh;
     width: 100%;
-    height: 100%;
-    z-index: 200;
-    background-color: #fff;
-    transition: .3s linear;
-}
-.loader.active{
-    top: -130%;
-}
-@media (max-width: 800px) {
+  }
   .gallery .container .gallery-wrapper .gallery-item,
   .popular .container .popular-wrapper .popular-item,
   .speciality .specials-wrapper .special-item {
     flex: 1 1 30%;
+    height: 20vh;
   }
+  .popular .container .popular-wrapper .popular-item .image {
+    width: 100%;
+    height: 16rem;
+    border-radius: 3px;
+  }
+}
+
+@media (max-width: 800px) {
+  .home {
+    height: 40vh;
+    width: 100%;
+  }
+  .gallery .container .gallery-wrapper .gallery-item,
+  .popular .container .popular-wrapper .popular-item,
+  .speciality .specials-wrapper .special-item {
+    flex: 1 1 30%;
+    height: 20vh;
+  }
+  .popular .container .popular-wrapper .popular-item {
+    height: 24rem;
+  }
+  .popular .container .popular-wrapper .popular-item .image {
+    width: 100%;
+    height: 12rem;
+    border-radius: 3px;
+  }
+
   .order .container .order-wrapper > img {
     flex: 0 0 100%;
     max-width: 100%;
@@ -527,6 +610,10 @@ input {
   }
   section {
     padding: 2rem;
+  }
+  .home {
+    height: 100vh;
+    width: 100%;
   }
 
   .nav .container {
@@ -567,9 +654,18 @@ input {
     flex-wrap: wrap;
   }
   .gallery .container .gallery-wrapper .gallery-item,
-  .popular .container .popular-wrapper .popular-item,
   .speciality .specials-wrapper .special-item {
     flex: 1 1 100%;
+    height: 25vh;
+  }
+  .popular .container .popular-wrapper .popular-item {
+    flex: 1 1 100%;
+    height: 25rem;
+  }
+
+  .speciality .specials-wrapper .special-item:hover .content {
+    transform: translateY(180%);
+    transition: 0.3s linear;
   }
   .review .container .review-wrapper {
     flex-wrap: wrap;
@@ -577,5 +673,8 @@ input {
   .review .container .review-wrapper .review-item {
     flex: 1 1 100%;
     margin-top: 3rem;
+  }
+  .order .container .order-wrapper .form form .btn-sub {
+    flex: 0 0 30%;
   }
 }
